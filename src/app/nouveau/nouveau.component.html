@@ -1,0 +1,43 @@
+<div class="container spacer">
+  <div class="panel panel-default" *ngIf="mode==0">
+    <div class="panel-heading">Saisie d'un produit</div>
+    <div class="panel-body">
+        <div class="form-group">
+          <label class="control-label">Désignation : </label>
+
+          <input class="form-control" type="text" [(ngModel)]="produit.designation">
+        </div>
+        <div class="form-group">
+          <label class="control-label">Prix : </label> <input
+          class="form-control" type="text" [(ngModel)]="produit.prix">
+        </div>
+        <div class="form-group">
+          <label class="control-label">Quantité : </label> <input
+          class="form-control" type="text" [(ngModel)]="produit.quantite">
+        </div>
+        <div>
+          <button class="btn btn-primary" (click)="saveProduit()">Save</button>
+        </div>
+    </div>
+  </div>
+  <div class="panel panel-default" *ngIf="mode==1">
+    <div class="panel-heading">
+      Confirmation : <a class="clickable" (click)="modeNew()">New</a>
+    </div>
+    <div class="panel-body">
+      <div class="form-group">
+        <label>ID : </label> <label>{{produit.id}}</label>
+      </div>
+      <div class="form-group">
+        <label>Désignation : </label> <label>{{produit.designation}}</label>
+      </div>
+      <div class="form-group">
+        <label>Prix : </label> <label>{{produit.prix}}</label>
+      </div>
+      <div class="form-group">
+        <label>Quantité : </label> <label>{{produit.quantite}}</label>
+      </div>
+    </div>
+  </div>
+
+</div>

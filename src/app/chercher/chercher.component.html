@@ -1,0 +1,38 @@
+<div>
+  <div class="container spacer">
+    Mot de clé: <input type="text" [(ngModel)]="designation" (input)="filtrer()" />
+  </div>
+
+  <div class="container">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>DESIGNATION</th>
+        <th>QUANTITE</th>
+        <th>PRIX</th>
+        <th></th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let produit of produits">
+        <td>{{produit.id}}</td>
+        <td>{{produit.designation}}</td>
+        <td>{{produit.quantite}}</td>
+        <td>{{produit.prix}}</td>
+        <td><a class="clickable" (click)="supprimer(produit)">Supprimer</a></td>
+        <td><a class="clickable" [routerLink]="['modifier', produit.id]">Modifier</a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="container">
+    <ul class="nav nav-pills">
+      <li [ngClass]="{'active':i==currentPage}" *ngFor="let p of pages; let i=index"  class="clickable">
+        <a (click)="gotoPage(i)">{{i + 1}}</a>
+      </li>
+    </ul>
+  </div>
+
+</div>
