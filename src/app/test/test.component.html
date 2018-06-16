@@ -1,0 +1,16 @@
+<select [(ngModel)]="selectedValue" [compareWith]="compare">
+  <option *ngFor="let p of produits" [ngValue]="p">{{p.designation}}</option>
+
+</select>
+
+<label>{{selectedValue.id}}</label>
+
+<select [(ngModel)]="selectedAny" [compareWith]="compareAny">
+  <option *ngFor="let a of anyObject" [ngValue]="a">{{a.libelle}}</option>
+
+</select>
+
+<label>{{selectedAny.id}}</label>
+
+
+<a (click)="downloadFile()">Download</a>
