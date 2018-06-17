@@ -39,7 +39,7 @@ export class ChercherComponent implements OnInit {
         this.produits = res.content;
         this.pages = new Array(this.total);
         this.nbrElements = res.numberOfElements;
-        if(this.nbrElements == 0 && this.pages > 0){
+        if(this.nbrElements == 0 && this.currentPage > 0){
           this.currentPage = this.currentPage - 1;
           this.chercher();
         }
