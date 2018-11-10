@@ -33,6 +33,8 @@ export class ChercherComponent implements OnInit {
     this.chercher();
     this.currentPage = 0;
     this.ascDesign = true;
+    this.ascPrix = true;
+    this.ascQte = true;
   }
 
   chercher(){

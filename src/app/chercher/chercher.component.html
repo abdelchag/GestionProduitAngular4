@@ -8,9 +8,9 @@
       <thead>
       <tr>
         <th>ID</th>
-        <th>DESIGNATION <button (click)="sortBy('design')">{{ascDesign ? 'a->z' : 'z->a'}}</button></th>
-        <th>QUANTITE <button (click)="sortBy('qte')">{{ascQte ? '1->9' : '9->1'}}</button></th>
-        <th>PRIX <button (click)="sortBy('prix')">{{ascPrix ? '1->9' : '9->1'}}</button></th>
+        <th>DESIGNATION <button (click)="sortBy('design')"><span *ngIf="ascDesign" class="glyphicon glyphicon-arrow-down"></span><span *ngIf="!ascDesign" class="glyphicon glyphicon-arrow-up"></span></button></th>
+        <th>QUANTITE <button (click)="sortBy('qte')"><span *ngIf="ascQte" class="glyphicon glyphicon-arrow-down"></span><span *ngIf="!ascQte" class="glyphicon glyphicon-arrow-up"></span></button></th>
+        <th>PRIX <button (click)="sortBy('prix')"><span *ngIf="ascPrix" class="glyphicon glyphicon-arrow-down"></span><span *ngIf="!ascPrix" class="glyphicon glyphicon-arrow-up"></span></button></th>
         <th></th>
         <th></th>
       </tr>
