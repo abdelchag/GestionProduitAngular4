@@ -4,16 +4,20 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {Produit} from "./produit.model";
 import { Observable } from 'rxjs';
+import {HttpClient} from "@angular/common/http";
 
 @Injectable()
 export class ProduitService {
 
-  constructor(public http: Http) { }
+  constructor(public http: Http, public httpClient: HttpClient) { }
 
   getAllProduits(designation:string, currentPage:number, size:number): Observable<any>{
-    return this.http.get('http://localhost:8080/chercher?design=' + designation + '&page=' + currentPage + '&size=' + size)
+
+    return this.http.get('http://localhost:8080/chercher?design=' + designation + '&page=' + currentPage + '&size=' + size, )
       .map(res => res.json())
       ._catch(this.handleError);
+
+
 
   }
 

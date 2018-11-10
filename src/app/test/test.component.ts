@@ -91,6 +91,9 @@ export class TestComponent implements OnInit {
       window.open(url);
 
 
+    }, err => {
+      console.log("Error");
+      console.log(err);
     });
     console.log("Finish ...");
   }

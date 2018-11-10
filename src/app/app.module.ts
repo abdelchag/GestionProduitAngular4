@@ -9,6 +9,9 @@ import {ProduitService} from "./produit.service";
 import {HttpModule} from "@angular/http";
 import {FormsModule} from "@angular/forms";
 import { ModifierComponent } from './modifier/modifier.component';
+import { TestComponent } from './test/test.component';
+import {TestService} from "./test.service";
+import {HttpClientModule} from "@angular/common/http";
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -16,6 +19,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'chercher', component: ChercherComponent },
   { path: 'nouveau', component: NouveauComponent },
+  { path: 'test', component: TestComponent },
   { path: 'modifier/:id', component: ModifierComponent }
 ];
 
@@ -26,15 +30,17 @@ const routes: Routes = [
     HomeComponent,
     ChercherComponent,
     NouveauComponent,
-    ModifierComponent
+    ModifierComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
+    HttpClientModule,
     RouterModule.forRoot(routes),
     FormsModule
   ],
-  providers: [ProduitService],
+  providers: [ProduitService, TestService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

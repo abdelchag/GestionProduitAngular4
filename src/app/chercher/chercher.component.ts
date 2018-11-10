@@ -16,6 +16,9 @@ export class ChercherComponent implements OnInit {
   private currentPage:number;
   private size:number;
   private nbrElements;
+  private ascDesign:boolean;
+  private ascQte:boolean;
+  private ascPrix:boolean;
 
 
   constructor(private service: ProduitService) {
@@ -26,8 +29,10 @@ export class ChercherComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log("chercher");
     this.chercher();
     this.currentPage = 0;
+    this.ascDesign = true;
   }
 
   chercher(){
@@ -68,5 +73,63 @@ export class ChercherComponent implements OnInit {
       },
       err => alert('Problème de suppression !!'));
   }
+
+  sortBy(sortValue: string){
+    switch(sortValue){
+      case 'design' :
+        this.produits = this.produits.sort(this.ascDesign ? this.sortByDesignationASC : this.sortByDesignationDESC);
+        this.ascDesign = !this.ascDesign;
+        break;
+      case 'qte' :
+        this.produits = this.produits.sort(this.ascQte ? this.sortByQuantiteASC : this.sortByQuantiteDESC);
+        this.ascQte = !this.ascQte;
+        break;
+      case 'prix' :
+        this.produits = this.produits.sort(this.ascPrix ? this.sortByPrixASC : this.sortByPrixDESC);
+        this.ascPrix = !this.ascPrix;
+        break;
+
+    }
+  }
+
+  sortByDesignationASC(p1 : Produit, p2 : Produit){
+    if(p1.designation > p2.designation) return 1;
+    else if(p1.designation === p2.designation) return 0;
+    else
+      return -1;
+  }
+  sortByDesignationDESC(p1 : Produit, p2 : Produit){
+    if(p1.designation < p2.designation) return 1;
+    else if(p1.designation === p2.designation) return 0;
+    else
+      return -1;
+  }
+
+  sortByQuantiteASC(p1 : Produit, p2 : Produit){
+    if(p1.quantite > p2.quantite) return 1;
+    else if(p1.quantite === p2.quantite) return 0;
+    else
+      return -1;
+  }
+  sortByQuantiteDESC(p1 : Produit, p2 : Produit){
+    if(p1.quantite < p2.quantite) return 1;
+    else if(p1.quantite === p2.quantite) return 0;
+    else
+      return -1;
+  }
+
+  sortByPrixASC(p1 : Produit, p2 : Produit){
+    if(p1.prix > p2.prix) return 1;
+    else if(p1.prix === p2.prix) return 0;
+    else
+      return -1;
+  }
+  sortByPrixDESC(p1 : Produit, p2 : Produit){
+    if(p1.prix < p2.prix) return 1;
+    else if(p1.prix === p2.prix) return 0;
+    else
+      return -1;
+  }
+
 
 }

@@ -8,9 +8,9 @@
       <thead>
       <tr>
         <th>ID</th>
-        <th>DESIGNATION</th>
-        <th>QUANTITE</th>
-        <th>PRIX</th>
+        <th>DESIGNATION <button (click)="sortBy('design')">{{ascDesign ? 'a->z' : 'z->a'}}</button></th>
+        <th>QUANTITE <button (click)="sortBy('qte')">{{ascQte ? '1->9' : '9->1'}}</button></th>
+        <th>PRIX <button (click)="sortBy('prix')">{{ascPrix ? '1->9' : '9->1'}}</button></th>
         <th></th>
         <th></th>
       </tr>

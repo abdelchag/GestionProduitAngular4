@@ -11,6 +11,9 @@
 </select>
 
 <label>{{selectedAny.id}}</label>
+<br/>
+
+<!--<a href="javascript:void(0)" (click)="downloadFile()">Download</a>-->
+<a [routerLink]="" (click)="downloadFile()" style="cursor: pointer">Download</a>
 
 
-<a (click)="downloadFile()">Download</a>
