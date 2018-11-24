@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Produit} from "../produit.model";
 import {ProduitService} from "../produit.service";
+import {MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
 
 @Component({
   selector: 'app-chercher',
@@ -19,11 +20,16 @@ export class ChercherComponent implements OnInit {
   private ascDesign:boolean;
   private ascQte:boolean;
   private ascPrix:boolean;
+  private dataSource : MatTableDataSource<Produit>;
+  displayedColumns: string[] = ['id', 'designation', 'prix', 'quantite'];
 
+
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private service: ProduitService) {
     this.designation = "";
-    this.size = 3;
+    this.size = 10;
     this.currentPage = 0;
     this.nbrElements = 0;
   }
@@ -44,6 +50,9 @@ export class ChercherComponent implements OnInit {
         console.log(res);
         this.total = res.totalPages;
         this.produits = res.content;
+        this.dataSource = new MatTableDataSource(this.produits);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
         this.pages = new Array(this.total);
         this.nbrElements = res.numberOfElements;
         if(this.nbrElements == 0 && this.currentPage > 0){
@@ -131,6 +140,16 @@ export class ChercherComponent implements OnInit {
     else if(p1.prix === p2.prix) return 0;
     else
       return -1;
+  }
+
+  applyFilterDesign(filterValue: string) {
+    this.dataSource.filterPredicate = (data : Produit, filter : string) => data.designation.indexOf(filter) != -1;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  applyFilterPrix(filterValue: string) {
+    this.dataSource.filterPredicate = (data : Produit, filter : string) => data.prix.toString().indexOf(filter) != -1;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 

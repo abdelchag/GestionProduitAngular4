@@ -35,4 +35,51 @@
     </ul>
   </div>
 
+  <div lass="container">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilterDesign($event.target.value)" placeholder="Designation">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput (keyup)="applyFilterPrix($event.target.value)" placeholder="Prix">
+    </mat-form-field>
+
+
+    <mat-table #table class="table table-striped" [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="designation">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Designation </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.designation}} </mat-cell>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="prix">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Prix </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.prix}} </mat-cell>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="quantite">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Quantité </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.quantite}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <mat-paginator [pageSize]="4" [length]="20" showFirstLastButtons hidePageSize></mat-paginator>
+
+  </div>
+
+
 </div>
+
+
+
