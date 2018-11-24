@@ -51,6 +51,21 @@ export class ChercherComponent implements OnInit {
         this.total = res.totalPages;
         this.produits = res.content;
         this.dataSource = new MatTableDataSource(this.produits);
+        this.dataSource.sortingDataAccessor = (item : Produit, property : string) => {
+          switch(property) {
+            case 'designation': {
+              if(item.designation === '')
+              {
+                return "zzzzzz";
+              }else{
+                return item.designation.toLowerCase().replace('à', 'a');
+              }
+
+            }
+            default: return item[property];
+          }
+        };
+
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
         this.pages = new Array(this.total);
